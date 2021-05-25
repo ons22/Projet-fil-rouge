@@ -1,0 +1,30 @@
+---
+- name: Afficher Hello World 
+  hosts: all
+  remote_user: root
+
+  become: yes
+  tasks:
+    - name: installation Docker et démarrage de Docker
+      shell: sudo amazon-linux-extras install -y docker && sudo systemctl start docker
+    - name: création d'un répertoire sur la machine distante
+      file:
+        path: /app
+        state: directory
+        mode: '0777'
+        owner: ec2-user
+    - name: copier l'archive sur le dossier remote /app
+      copy:
+        src: Projet_python.tar.gz
+        dest: /app
+        mode: 0777
+    - name: génération de l'image docker
+      shell: cd /app && docker build -t formation/python:1.0 .
+    - name: suppression du conteneur si existant
+      shell: docker rm -f conteneur_app
+      ignore_errors: true
+    - name: execution of the container
+      shell: docker run -p 5000:5000 -d --rm --name conteneur_app formation/python:1.0
+      register: result
+    - debug:
+        var=result
