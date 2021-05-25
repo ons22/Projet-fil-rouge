@@ -18,6 +18,10 @@
         src: Projet_python.tar.gz
         dest: /app
         mode: 0777
+    - name: copier dockerfile
+      copy: 
+        src: Dockerfile
+        dest: /app
     - name: génération de l'image docker
       shell: cd /app && docker build -t formation/python:1.0 .
     - name: suppression du conteneur si existant
