@@ -5,4 +5,4 @@ WORKDIR /app
 RUN  tar xzf /app/Projet_python.tar.gz
 WORKDIR /app/Projet_python 
 RUN pip install -r requirements.txt
-CMD pytest && python app.py
+CMD python app.py
