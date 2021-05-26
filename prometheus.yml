@@ -1,4 +1,0 @@
-- job_name: 'jenkins'
-  metrics_path: /prometheus
-  static_configs:
-    - targets: ['ec2-54-177-238-216.us-west-1.compute.amazonaws.com:8080']
