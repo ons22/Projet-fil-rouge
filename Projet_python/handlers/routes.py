@@ -7,7 +7,7 @@ def configure_routes(app):
     @app.route('/')
     def hello_world():
         return 'Hello, World !'
-        return request.remote_addr
+        return request.environ.get('HTTP_X_REAL_IP', request.remote_addr)
     @app.route('/post/test', methods=['POST'])
     def receive_post():
         headers = request.headers
