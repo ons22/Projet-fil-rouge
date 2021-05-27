@@ -6,7 +6,7 @@ def configure_routes(app):
 
     @app.route('/')
     def hello_world():
-        return  flask.request.remote_addr
+        return {{url_for('/')}}
        
     @app.route('/post/test', methods=['POST'])
     def receive_post():
