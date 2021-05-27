@@ -6,8 +6,7 @@ def configure_routes(app):
 
     @app.route('/')
     def hello_world():
-        hostname = request.headers.get('Host')
-        return 'Hello, World' & hostname & '!'
+        return 'Hello, World' & host & '!'
 
     @app.route('/post/test', methods=['POST'])
     def receive_post():
