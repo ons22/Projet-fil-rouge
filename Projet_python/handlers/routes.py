@@ -6,8 +6,9 @@ def configure_routes(app):
 
     @app.route('/')
     def hello_world():
-        return 'Hello, World !'
-        return flask.request.host
+        host= flask.request.host_url
+        return ('Hello, World !' + host)
+       
     @app.route('/post/test', methods=['POST'])
     def receive_post():
         headers = request.headers
